@@ -1,10 +1,10 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import {HighlightCard} from '../../coponents/HighlightCard';
+import {HighlightCard} from '../../Components/HighlightCard';
 import {
   TransactionCards,
   TransactionalListProps,
-} from '../../coponents/TransactionCards';
+} from '../../Components/TransactionCards';
 import {
   Container,
   Header,

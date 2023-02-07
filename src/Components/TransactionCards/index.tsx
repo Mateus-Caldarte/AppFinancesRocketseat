@@ -37,7 +37,7 @@ export function TransactionCards({data}: Props) {
       </Amount>
       <Footer>
         <CardTransaction>
-          <Icon name="attach-money" />
+          <Icon name={data.category.icon} />
           <Transaction>{data.category.name}</Transaction>
         </CardTransaction>
         <Date>{data.date}</Date>

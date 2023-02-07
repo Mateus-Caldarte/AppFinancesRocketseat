@@ -21,6 +21,7 @@ const icon = {
   down: 'arrow-down',
   total: 'check',
 };
+
 export function HighlightCard({type, title, amount, lastTransaction}: Props) {
   return (
     <Container type={type}>
