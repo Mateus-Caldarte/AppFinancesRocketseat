@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button} from '../../Components/form/Button';
-import {Input} from '../../Components/form/Input';
+import {ImputForm} from '../../Components/form/ImputForm';
 import {Selector} from '../../Components/form/Selector';
 import {TransactionTypeButton} from '../../Components/form/TransactionTypeButton';
 import {
@@ -13,10 +13,18 @@ import {
 } from './styles';
 import {Modal, TouchableOpacity, View} from 'react-native';
 import {CategorySelect} from '../../screens/CategorySelect';
+import {useForm} from 'react-hook-form';
+
+interface FormData {
+  name: string;
+  amount: string;
+}
 
 export function Register() {
   const [active, setActive] = useState('');
   const [openModal, setOpenModal] = useState(false);
+
+  const {control, handleSubmit} = useForm();
 
   const [category, setCaregory] = useState({
     key: 'category',
@@ -34,6 +42,14 @@ export function Register() {
     setOpenModal(true);
   }
 
+  function handleRegister(form: FormData) {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+    };
+    console.log(data);
+  }
+
   return (
     <Container>
       <Head>
@@ -42,8 +58,16 @@ export function Register() {
 
       <Form>
         <Fields>
-          <Input placeholder="Digite o nome" />
-          <Input placeholder="Digite o preço" />
+          <ImputForm
+            placeholder="Digite o nome"
+            control={control}
+            name="name"
+          />
+          <ImputForm
+            placeholder="Digite o preço"
+            control={control}
+            name="amount"
+          />
 
           <TransactionsTipes>
             <TransactionTypeButton
@@ -66,7 +90,8 @@ export function Register() {
             <Selector title={category.name} onPress={() => {}} />
           </TouchableOpacity>
         </Fields>
-        <Button title="Enviar" />
+
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
       </Form>
 
       <Modal visible={openModal}>
